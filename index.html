@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ LLM 채팅 테스트 ✨</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 왼쪽 패널: 시스템 프롬프트 -->
+        <div class="left-panel">
+            <h3>✏️ 시스템 프롬프트</h3>
+            <textarea id="system-prompt" placeholder="AI에게 기본 지시사항을 알려주세요..."></textarea>
+            <div class="emoji-hint">💡 AI의 성격과 역할을 정해주세요!</div>
+        </div>
+
+        <!-- 중앙 패널: 채팅 영역 -->
+        <div class="center-panel">
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages"></div>
+                <div class="chat-input-container">
+                    <textarea id="user-input" placeholder="무엇이든 물어보세요... 🤔"></textarea>
+                    <button id="send-button">💬</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 오른쪽 패널: 모델 및 파라미터 설정 -->
+        <div class="right-panel">
+            <div class="model-selection">
+                <h3>🤖 모델 선택</h3>
+                <div class="model-group">
+                    <h4>🔮 OpenAI</h4>
+                    <div class="model-options">
+                        <label>
+                            <input type="radio" name="model" value="gpt-4o" checked> gpt-4o
+                        </label>
+                        <label>
+                            <input type="radio" name="model" value="gpt-4o-mini"> gpt-4o-mini
+                        </label>
+                        <label>
+                            <input type="radio" name="model" value="gpt-4.1"> gpt-4.1
+                        </label>
+                    </div>
+                    <div class="api-key-input">
+                        <label for="openai-key">OpenAI API Key</label>
+                        <input type="password" id="openai-key" placeholder="OpenAI API 키를 입력하세요">
+                    </div>
+                </div>
+                <div class="model-group">
+                    <h4>🌟 Gemini</h4>
+                    <div class="model-options">
+                        <label>
+                            <input type="radio" name="model" value="gemini-2.0-flash"> gemini-2.0-flash
+                        </label>
+                        <label>
+                            <input type="radio" name="model" value="gemini-2.5-flash"> gemini-2.5-flash
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="gemini-options" style="display: none;">
+                <h3>✨ Gemini 옵션</h3>
+                <div class="option">
+                    <label>
+                        <input type="checkbox" id="grounding-option"> 그라운딩 옵션
+                    </label>
+                </div>
+                <div class="option">
+                    <label for="region-select">지역 선택:</label>
+                    <select id="region-select">
+                        <option value="us-west1">US West1 (오리건)</option>
+                        <option value="us-central1">US Central1 (아이오와)</option>
+                        <option value="custom">직접 입력</option>
+                    </select>
+                </div>
+                <div class="option custom-region" style="display: none;">
+                    <label for="custom-region-input">직접 입력:</label>
+                    <input type="text" id="custom-region-input" placeholder="지역 코드 입력 (예: asia-northeast3)">
+                </div>
+            </div>
+            <div class="parameters">
+                <h3>🎛️ 파라미터 설정</h3>
+                <div class="parameter">
+                    <label for="temperature">Temperature:</label>
+                    <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7">
+                    <span class="parameter-value" id="temperature-value">0.7</span>
+                </div>
+                <div class="parameter">
+                    <label for="max-length">Maximum length:</label>
+                    <input type="range" id="max-length" min="100" max="4096" step="1" value="2048">
+                    <span class="parameter-value" id="max-length-value">2048</span>
+                </div>
+                <div class="parameter">
+                    <label for="top-p">Top P:</label>
+                    <input type="range" id="top-p" min="0" max="1" step="0.01" value="0.95">
+                    <span class="parameter-value" id="top-p-value">0.95</span>
+                </div>
+                <div class="parameter">
+                    <label for="frequency-penalty">Frequency penalty:</label>
+                    <input type="range" id="frequency-penalty" min="0" max="2" step="0.1" value="0">
+                    <span class="parameter-value" id="frequency-penalty-value">0</span>
+                </div>
+                <div class="parameter">
+                    <label for="presence-penalty">Presence penalty:</label>
+                    <input type="range" id="presence-penalty" min="0" max="2" step="0.1" value="0">
+                    <span class="parameter-value" id="presence-penalty-value">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
