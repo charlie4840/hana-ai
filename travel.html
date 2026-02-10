@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✈️ 여행 일정 짜기</title>
+    <link rel="stylesheet" href="travel.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="travel-header">
+        <a href="index.html" class="nav-link">← 일반 채팅</a>
+        <h1>✈️ 여행 일정 짜기</h1>
+        <span class="header-desc">목적지와 기간을 알려주시면 AI가 일정을 추천해 드려요</span>
+    </header>
+
+    <div class="travel-container">
+        <!-- 왼쪽: 여행 조건 요약 -->
+        <aside class="travel-sidebar">
+            <h3>🗺️ 여행 정보</h3>
+            <div class="travel-form">
+                <label>목적지</label>
+                <input type="text" id="travel-destination" placeholder="예: 제주도, 도쿄">
+                <label>출발일</label>
+                <input type="date" id="travel-start">
+                <label>귀국일</label>
+                <input type="date" id="travel-end">
+                <label>인원 / 스타일 (선택)</label>
+                <input type="text" id="travel-extra" placeholder="예: 2명, 맛집 위주">
+            </div>
+            <div class="sidebar-hint">💡 채팅에서 "3일치 일정 짜줘"처럼 말해보세요!</div>
+
+            <div class="model-section">
+                <h3>🤖 모델</h3>
+                <label><input type="radio" name="travel-model" value="gpt-4o" checked> GPT-4o</label>
+                <label><input type="radio" name="travel-model" value="gpt-4o-mini"> GPT-4o Mini</label>
+                <label><input type="radio" name="travel-model" value="gemini-2.0-flash"> Gemini</label>
+                <div class="api-key-wrap">
+                    <label for="travel-api-key">OpenAI API Key</label>
+                    <input type="password" id="travel-api-key" placeholder="API 키 입력">
+                </div>
+            </div>
+        </aside>
+
+        <!-- 중앙: 채팅 -->
+        <main class="travel-chat-area">
+            <div class="chat-container">
+                <div id="travel-chat-messages" class="chat-messages"></div>
+                <div class="chat-input-container">
+                    <textarea id="travel-user-input" placeholder="예: 3박 4일 제주도 일정 짜줘, 렌터카 있을 때 코스로..."></textarea>
+                    <button id="travel-send-btn">✈️</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="travel.js"></script>
+</body>
+</html>
