@@ -1,0 +1,18 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* 고객 상세 다이얼로그: 기본 닫기 버튼 숨김 (커스텀 축소/닫기 버튼 사용) */
+.customer-detail-dialog > button {
+  display: none;
+}
+
+/* 상담 이력 상세: 기본 닫기 버튼 숨김 */
+.history-detail-dialog > button {
+  display: none;
+}
+
+/* 추천 패널 상세 팝업(KMS/프로모션/스크립트/상품): 기본 닫기 버튼 숨김 */
+.recommendation-panel-dialog > button {
+  display: none;
+}
