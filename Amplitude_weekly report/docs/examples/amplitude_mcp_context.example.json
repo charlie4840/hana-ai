@@ -1,0 +1,25 @@
+{
+  "source": "amplitude_mcp",
+  "fetched_at": "2026-04-01T12:00:00Z",
+  "project_id": "343341",
+  "report_period": {
+    "label": "금주 (MCP 조회 기준)",
+    "range_kst": "2026-03-23 - 2026-03-29"
+  },
+  "mcp_queries": [
+    {
+      "tool": "query_dataset",
+      "name": "예: AI 피규어 이미지 - 플랫폼별",
+      "chart_id": "51rah2bn",
+      "note": "Cursor에서 user-Amplitude MCP로 query_dataset / query_chart 응답을 붙여 넣으세요. JSON timeSeries·CSV 본문 모두 가능.",
+      "result": {}
+    },
+    {
+      "tool": "query_dataset",
+      "name": "예: 3단계 퍼널 H-AI → 이미지 → 상세",
+      "chart_id": "b2acszi4",
+      "result": {}
+    }
+  ],
+  "howto": "이 내용을 프로젝트 루트의 amplitude_mcp_context.json 으로 복사·채운 뒤 generate_analysis.py 를 실행합니다. 발송 파이프라인은 REST 키가 있으면 send_email.py 가 자동으로 갱신합니다. 레거시로 amplitude_snapshot.json 만 있으면 그 파일을 읽습니다."
+}

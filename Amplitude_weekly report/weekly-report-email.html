@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AI 이미지 주간 리포트</title>
+    <!-- 메일 클라이언트는 외부 CSS를 로드하지 않습니다. 스타일은 모두 인라인입니다. -->
+</head>
+<body style="margin:0;padding:0;background-color:#f5f4fc;font-family:'Segoe UI','Malgun Gothic',sans-serif;color:#1a1a2e;-webkit-text-size-adjust:100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f4fc;">
+        <tr>
+            <td align="center" style="padding:24px 12px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:1100px;width:100%;margin:0 auto;">
+
+                    <!-- Hero: 보라 메인 + 민트 포인트(상단 라인·우측 강조선) -->
+                    <tr>
+                        <td style="padding-bottom:12px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#6228C0;border-radius:18px;overflow:hidden;box-shadow:0 4px 22px rgba(98,40,192,0.28);">
+                                <tr>
+                                    <td style="background-color:#00D1D1;line-height:4px;font-size:0;height:4px;mso-line-height-rule:exactly;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="padding:22px 22px;color:#ffffff;vertical-align:top;">
+                                                    <p style="margin:0 0 8px 0;font-size:13px;color:#9cf3f3;font-weight:600;">H-AI x AI 이미지</p>
+                                                    <h1 style="margin:0 0 8px 0;font-size:24px;line-height:1.25;font-weight:800;color:#ffffff;">주간 성과 리포트</h1>
+                                                    <p style="margin:0;font-size:14px;opacity:0.95;font-weight:500;color:#ffffff;">{{REPORT_PERIOD}}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- KPI 1x4 (한 줄) -->
+                    <tr>
+                        <td style="padding-bottom:12px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td width="25%" style="padding:4px;vertical-align:top;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;box-shadow:0 2px 12px rgba(98,40,192,0.09);">
+                                            <tr><td style="padding:12px 10px;">
+                                                <h3 style="margin:0 0 6px 0;color:#6b6680;font-size:12px;font-weight:600;line-height:1.3;">AI 이미지 UV</h3>
+                                                <p style="margin:0 0 4px 0;font-size:22px;font-weight:800;letter-spacing:-0.4px;color:#1a1a2e;">{{KPI_UV_REPORT}}</p>
+                                                <p style="margin:0;font-size:11px;font-weight:600;color:#6b6680;">주간 Uniques · load_pages · /ai-image</p>
+                                            </td></tr>
+                                        </table>
+                                    </td>
+                                    <td width="25%" style="padding:4px;vertical-align:top;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;box-shadow:0 2px 12px rgba(98,40,192,0.09);">
+                                            <tr><td style="padding:12px 10px;">
+                                                <h3 style="margin:0 0 6px 0;color:#6b6680;font-size:12px;font-weight:600;line-height:1.3;">AI 이미지 PV</h3>
+                                                <p style="margin:0 0 4px 0;font-size:22px;font-weight:800;letter-spacing:-0.4px;color:#1a1a2e;">{{KPI_PV_REPORT}}</p>
+                                                <p style="margin:0;font-size:11px;font-weight:600;color:#6b6680;">주간 Totals · load_pages · /ai-image</p>
+                                            </td></tr>
+                                        </table>
+                                    </td>
+                                    <td width="25%" style="padding:4px;vertical-align:top;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;box-shadow:0 2px 12px rgba(98,40,192,0.09);">
+                                            <tr><td style="padding:12px 10px;">
+                                                <h3 style="margin:0 0 6px 0;color:#6b6680;font-size:12px;font-weight:600;line-height:1.3;">H-AI → AI이미지</h3>
+                                                <p style="margin:0 0 4px 0;font-size:22px;font-weight:800;letter-spacing:-0.4px;color:#1a1a2e;">{{KPI_HAI_AI_REPORT}}</p>
+                                                <p style="margin:0;font-size:11px;font-weight:600;color:#6b6680;">3단계 퍼널 1→2 · H-AI→/ai-image</p>
+                                            </td></tr>
+                                        </table>
+                                    </td>
+                                    <td width="25%" style="padding:4px;vertical-align:top;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;box-shadow:0 2px 12px rgba(98,40,192,0.09);">
+                                            <tr><td style="padding:12px 10px;">
+                                                <h3 style="margin:0 0 6px 0;color:#6b6680;font-size:12px;font-weight:600;line-height:1.3;">AI이미지 → 패키지상세</h3>
+                                                <p style="margin:0 0 4px 0;font-size:22px;font-weight:800;letter-spacing:-0.4px;color:#1a1a2e;">{{KPI_2STEP_REPORT}}</p>
+                                                <p style="margin:0;font-size:11px;font-weight:600;color:#6b6680;">2단계 퍼널: /ai-image → load_detail_pkg</p>
+                                            </td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 주간 비교 요약 -->
+                    <tr>
+                        <td style="padding-bottom:12px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;box-shadow:0 2px 12px rgba(98,40,192,0.08);">
+                                <tr>
+                                    <td style="padding:16px;">
+                                        <h2 style="margin:0 0 12px 0;font-size:18px;font-weight:800;color:#6228C0;">주간 비교 요약</h2>
+
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-size:14px;table-layout:fixed;width:100%;">
+                                            <colgroup>
+                                                <col style="width:40%;">
+                                                <col style="width:20%;">
+                                                <col style="width:20%;">
+                                                <col style="width:20%;">
+                                            </colgroup>
+                                            <tr>
+                                                <th align="left" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:#6b6680;font-size:12px;font-weight:600;">지표</th>
+                                                <th align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:#6b6680;font-size:12px;font-weight:600;">전주</th>
+                                                <th align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:#6b6680;font-size:12px;font-weight:600;">금주</th>
+                                                <th align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:#6b6680;font-size:12px;font-weight:600;">증감</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">AI 이미지 UV</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_UV_PRIOR}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_UV_REPORT}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:{{ROW_UV_DELTA_COLOR}};font-weight:600;">{{ROW_UV_DELTA}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">AI 이미지 PV</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_PV_PRIOR}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_PV_REPORT}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:{{ROW_PV_DELTA_COLOR}};font-weight:600;">{{ROW_PV_DELTA}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">H-AI → AI이미지 진입률</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_HAI_PRIOR}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_HAI_REPORT}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:{{ROW_HAI_DELTA_COLOR}};font-weight:600;">{{ROW_HAI_DELTA}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">AI이미지 → 패키지상세 이동률</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_2STEP_PRIOR}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;">{{ROW_2STEP_REPORT}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;color:{{ROW_2STEP_DELTA_COLOR}};font-weight:600;">{{ROW_2STEP_DELTA}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:10px 8px;border-bottom:1px solid #e0e0e0;background-color:#F3ECFF;font-weight:700;">최종 전환률 · H-AI→패키지상세</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;background-color:#F3ECFF;font-weight:700;">{{ROW_FINAL_PRIOR}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;background-color:#F3ECFF;font-weight:700;">{{ROW_FINAL_REPORT}}</td>
+                                                <td align="right" style="padding:10px 8px;border-bottom:1px solid #e0e0e0;background-color:#F3ECFF;color:{{ROW_FINAL_DELTA_COLOR}};font-weight:700;">{{ROW_FINAL_DELTA}}</td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- 미니 막대: 테이블 width로 Gmail 호환 -->
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;border:1px solid #e4daf5;border-radius:12px;background-color:#faf8ff;">
+                                            <tr>
+                                                <td style="padding:14px;">
+                                                    <h3 style="margin:0 0 12px 0;color:#6228C0;font-size:15px;font-weight:800;">지표 추이 그래프</h3>
+
+                                                    <!-- UV -->
+                                                    <p style="margin:0 0 6px 0;font-size:13px;color:#6b6680;font-weight:700;">AI 이미지 UV</p>
+                                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+                                                        <tr>
+                                                            <td>
+                                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td width="{{BAR_UV_PRIOR_W}}%" bgcolor="#dddddd" style="width:{{BAR_UV_PRIOR_W}}%;background-color:#dddddd;color:#444444;font-size:12px;font-weight:700;padding:8px;border-radius:8px;">{{BAR_UV_LABEL_PRIOR}}</td>
+                                                                        <td width="{{BAR_UV_REST_W}}%" style="font-size:0;line-height:0;">&nbsp;</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
+                                                        <tr>
+                                                            <td>
+                                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td width="{{BAR_UV_REPORT_W}}%" bgcolor="#6228C0" style="width:{{BAR_UV_REPORT_W}}%;background-color:#6228C0;color:#ffffff;font-size:12px;font-weight:700;padding:8px;border-radius:8px;">{{BAR_UV_LABEL_REPORT}}</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <!-- PV -->
+                                                    <p style="margin:0 0 6px 0;font-size:13px;color:#6b6680;font-weight:700;">AI 이미지 PV</p>
+                                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+                                                        <tr>
+                                                            <td>
+                                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td width="{{BAR_PV_PRIOR_W}}%" bgcolor="#dddddd" style="width:{{BAR_PV_PRIOR_W}}%;background-color:#dddddd;color:#444444;font-size:12px;font-weight:700;padding:8px;border-radius:8px;">{{BAR_PV_LABEL_PRIOR}}</td>
+                                                                        <td width="{{BAR_PV_REST_W}}%" style="font-size:0;line-height:0;">&nbsp;</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
+                                                        <tr>
+                                                            <td>
+                                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td width="{{BAR_PV_REPORT_W}}%" bgcolor="#6228C0" style="width:{{BAR_PV_REPORT_W}}%;background-color:#6228C0;color:#ffffff;font-size:12px;font-weight:700;padding:8px;border-radius:8px;">{{BAR_PV_LABEL_REPORT}}</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <!-- 최종 전환률 -->
+                                                    <p style="margin:0 0 6px 0;font-size:13px;color:#6b6680;font-weight:700;">최종 전환률</p>
+                                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                        <tr>
+                                                            <td>
+                                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td width="{{BAR_FIN_PRIOR_W}}%" bgcolor="#B39DDB" style="width:{{BAR_FIN_PRIOR_W}}%;background-color:#B39DDB;color:#ffffff;font-size:12px;font-weight:700;padding:8px;border-radius:8px;">{{BAR_FIN_LABEL_PRIOR}}</td>
+                                                                        <td width="{{BAR_FIN_REST_W}}%" style="font-size:0;line-height:0;">&nbsp;</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding-top:6px;">
+                                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                    <tr>
+                                                                        <td width="{{BAR_FIN_REPORT_W}}%" bgcolor="#6228C0" style="width:{{BAR_FIN_REPORT_W}}%;background-color:#6228C0;color:#ffffff;font-size:12px;font-weight:700;padding:8px;border-radius:8px;">{{BAR_FIN_LABEL_REPORT}}</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 플랫폼 / 인기지역 (동일 행 높이 맞춤) -->
+                    <tr>
+                        <td style="padding-bottom:12px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+                                <tr>
+                                    <td width="50%" valign="top" style="padding:4px;vertical-align:top;height:100%;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;height:100%;">
+                                            <tr>
+                                                <td valign="top" bgcolor="#ffffff" height="227" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;padding:16px;vertical-align:top;box-sizing:border-box;-webkit-box-sizing:border-box;height:227px;min-height:227px;max-height:227px;">
+                                                <h2 style="margin:0 0 4px 0;font-size:18px;font-weight:800;color:#6228C0;">플랫폼 비중</h2>
+                                                <p style="margin:0 0 12px 0;font-size:11px;color:#6b6680;line-height:1.35;">차트 <strong>AI 피규어 이미지 - 플랫폼별</strong> · {{CHART_PERIOD_SHORT}}</p>
+                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;">
+                                                    <tr>
+                                                        <td width="48" style="font-size:14px;">MDA</td>
+                                                        <td style="padding:0 8px;">
+                                                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ece4fb;border-radius:999px;height:10px;">
+                                                                <tr><td style="padding:0;border-radius:999px;">
+                                                                    <table role="presentation" width="{{BAR_MDA_W}}%" cellpadding="0" cellspacing="0" border="0" style="height:10px;">
+                                                                        <tr><td bgcolor="#6228C0" style="background-color:#6228C0;border-radius:999px;height:10px;font-size:0;line-height:0;">&nbsp;</td></tr>
+                                                                    </table>
+                                                                </td></tr>
+                                                            </table>
+                                                        </td>
+                                                        <td width="56" align="right" style="font-size:14px;font-weight:700;color:#6228C0;">{{PCT_MDA}}%</td>
+                                                    </tr>
+                                                </table>
+                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;">
+                                                    <tr>
+                                                        <td width="48" style="font-size:14px;">DCM</td>
+                                                        <td style="padding:0 8px;">
+                                                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ece4fb;border-radius:999px;height:10px;">
+                                                                <tr><td style="padding:0;border-radius:999px;">
+                                                                    <table role="presentation" width="{{BAR_DCM_W}}%" cellpadding="0" cellspacing="0" border="0" style="height:10px;min-width:4px;">
+                                                                        <tr><td bgcolor="#6228C0" style="background-color:#6228C0;border-radius:999px;height:10px;font-size:0;line-height:0;">&nbsp;</td></tr>
+                                                                    </table>
+                                                                </td></tr>
+                                                            </table>
+                                                        </td>
+                                                        <td width="56" align="right" style="font-size:14px;font-weight:700;color:#6228C0;">{{PCT_DCM}}%</td>
+                                                    </tr>
+                                                </table>
+                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                    <tr>
+                                                        <td width="48" style="font-size:14px;">DCP</td>
+                                                        <td style="padding:0 8px;">
+                                                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ece4fb;border-radius:999px;height:10px;">
+                                                                <tr><td style="padding:0;border-radius:999px;">
+                                                                    <table role="presentation" width="{{BAR_DCP_W}}%" cellpadding="0" cellspacing="0" border="0" style="height:10px;min-width:4px;">
+                                                                        <tr><td bgcolor="#6228C0" style="background-color:#6228C0;border-radius:999px;height:10px;font-size:0;line-height:0;">&nbsp;</td></tr>
+                                                                    </table>
+                                                                </td></tr>
+                                                            </table>
+                                                        </td>
+                                                        <td width="56" align="right" style="font-size:14px;font-weight:700;color:#6228C0;">{{PCT_DCP}}%</td>
+                                                    </tr>
+                                                </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="50%" valign="top" style="padding:4px;vertical-align:top;height:100%;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;height:100%;">
+                                            <tr>
+                                                <td valign="top" bgcolor="#ffffff" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;padding:16px;vertical-align:top;box-sizing:border-box;-webkit-box-sizing:border-box;height:100%;">
+                                                <h2 style="margin:0 0 4px 0;font-size:18px;font-weight:800;color:#6228C0;">인기 지역 Top 3</h2>
+                                                <p style="margin:0 0 12px 0;font-size:11px;color:#6b6680;line-height:1.35;">차트 <strong>AI 이미지_지역별</strong> · {{CHART_PERIOD_SHORT}}</p>
+                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;background-color:#fdfbff;border:1px solid #e4daf5;border-radius:10px;">
+                                                    <tr>
+                                                        <td style="padding:10px 12px;font-size:14px;">1. {{REG1_LABEL}}</td>
+                                                        <td align="right" style="padding:10px 12px;font-size:14px;font-weight:700;color:#6228C0;">{{REG1_VAL}}</td>
+                                                    </tr>
+                                                </table>
+                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;background-color:#fdfbff;border:1px solid #e4daf5;border-radius:10px;">
+                                                    <tr>
+                                                        <td style="padding:10px 12px;font-size:14px;">2. {{REG2_LABEL}}</td>
+                                                        <td align="right" style="padding:10px 12px;font-size:14px;font-weight:700;color:#6228C0;">{{REG2_VAL}}</td>
+                                                    </tr>
+                                                </table>
+                                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#fdfbff;border:1px solid #e4daf5;border-radius:10px;">
+                                                    <tr>
+                                                        <td style="padding:10px 12px;font-size:14px;">3. {{REG3_LABEL}}</td>
+                                                        <td align="right" style="padding:10px 12px;font-size:14px;font-weight:700;color:#6228C0;">{{REG3_VAL}}</td>
+                                                    </tr>
+                                                </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 여정지도 -->
+                    <tr>
+                        <td style="padding-bottom:12px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;">
+                                <tr><td style="padding:16px;">
+                                    <h2 style="margin:0 0 12px 0;font-size:18px;font-weight:800;color:#6228C0;">AI이미지 사용자 여정지도 분석</h2>
+                                    {{JOURNEY_ANALYSIS_CONTENT}}
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 시사점 -->
+                    <tr>
+                        <td style="padding-bottom:12px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #6228C0;border-radius:14px;">
+                                <tr><td style="padding:16px;">
+                                    <h2 style="margin:0 0 12px 0;font-size:18px;font-weight:800;color:#6228C0;">주요 시사점</h2>
+                                    {{KEY_INSIGHTS_CONTENT}}
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 대시보드 링크 -->
+                    <tr>
+                        <td>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #e4daf5;border-top:3px solid #00D1D1;border-radius:14px;">
+                                <tr><td style="padding:16px;">
+                                    <h2 style="margin:0 0 10px 0;font-size:18px;font-weight:800;color:#6228C0;">AI이미지 대시보드</h2>
+                                    <p style="margin:0;font-size:14px;word-break:break-all;">
+                                        <a href="https://app.amplitude.com/analytics/Hanatour/dashboard/ntke3pe0" target="_blank" rel="noopener noreferrer" style="color:#00b5b5;font-weight:600;">https://app.amplitude.com/analytics/Hanatour/dashboard/ntke3pe0</a>
+                                    </p>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>프롬프트 제어 패널</title>
+  <style>
+    :root {
+      --purple: #6228C0;
+      --mint: #00D1D1;
+      --bg: #f5f4fc;
+      --card: #fff;
+      --text: #1a1a2e;
+      --muted: #6b6680;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px 16px 48px;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; }
+    h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--purple);
+      margin: 0 0 8px;
+    }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
+    .card {
+      background: var(--card);
+      border: 1px solid #e4daf5;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(98, 40, 192, 0.08);
+    }
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--purple);
+    }
+    textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: 12px;
+      border: 1px solid #e4daf5;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea.insights { min-height: 220px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      background: var(--purple);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(98, 40, 192, 0.35);
+    }
+    .btn:hover { filter: brightness(1.06); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-wrap { margin-top: 20px; }
+    #status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    #status.show { display: block; }
+    #status.ok { background: #e8f5e9; color: #1b5e20; }
+    #status.err { background: #ffebee; color: #b71c1c; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>프롬프트 제어 패널</h1>
+    <p class="sub">주간 리포트 생성에 사용되는 AI 프롬프트를 수정하고 저장하는 용도입니다.</p>
+    <p class="sub" style="margin-top:-12px;"><a href="/report-builder" style="color:#6228C0;font-weight:700;">주간 보고서 만들기 (기간·미리보기·발송) →</a></p>
+
+    <div class="card">
+      <h2>AI 이미지 사용자 여정지도 분석 프롬프트</h2>
+      <textarea id="journey_prompt" spellcheck="false"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>주요 시사점 프롬프트</h2>
+      <textarea id="insights_prompt" class="insights" spellcheck="false"></textarea>
+    </div>
+
+    <div class="btn-wrap">
+      <button type="button" class="btn" id="btn_save">프롬프트 저장</button>
+    </div>
+    <div id="status"></div>
+  </div>
+  <script>
+    (async function init() {
+      try {
+        const r = await fetch("/api/prompts");
+        const j = await r.json();
+        document.getElementById("journey_prompt").value = j.journey_prompt || "";
+        document.getElementById("insights_prompt").value = j.insights_prompt || "";
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+
+    document.getElementById("btn_save").addEventListener("click", async function () {
+      const btn = this;
+      const status = document.getElementById("status");
+      status.className = "show";
+      status.textContent = "저장 중…";
+      status.classList.remove("ok", "err");
+      btn.disabled = true;
+
+      const body = {
+        journey_prompt: document.getElementById("journey_prompt").value,
+        insights_prompt: document.getElementById("insights_prompt").value,
+      };
+
+      try {
+        const r = await fetch("/api/save-prompts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const j = await r.json();
+        if (j.ok) {
+          status.classList.add("ok");
+          status.textContent = "프롬프트가 성공적으로 저장되었습니다.";
+        } else {
+          status.classList.add("err");
+          status.textContent = j.error || "오류가 발생했습니다.";
+        }
+      } catch (e) {
+        status.classList.add("err");
+        status.textContent = String(e);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

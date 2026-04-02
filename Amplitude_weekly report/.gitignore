@@ -1,0 +1,9 @@
+.env
+mail.env
+logs/
+__pycache__/
+*.py[cod]
+# LLM 생성본 (기본은 analysis-output.default.json 사용)
+analysis-output.json
+# MCP 실시간 조회로 채운 컨텍스트 (예시: docs/examples/amplitude_mcp_context.example.json)
+amplitude_mcp_context.json

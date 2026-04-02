@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>주간 보고서 만들기</title>
+  <style>
+    :root {
+      --purple: #6228C0;
+      --mint: #00D1D1;
+      --bg: #f5f4fc;
+      --card: #fff;
+      --text: #1a1a2e;
+      --muted: #6b6680;
+      --danger: #c62828;
+      --ok: #2e7d32;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px 16px 48px;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--purple);
+      margin: 0 0 8px;
+    }
+    .sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 20px; }
+    .nav { margin-bottom: 20px; }
+    .nav a { color: var(--purple); font-weight: 600; text-decoration: none; }
+    .nav a:hover { text-decoration: underline; }
+    .card {
+      background: var(--card);
+      border: 1px solid #e4daf5;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(98, 40, 192, 0.08);
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+    .field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="date"] {
+      padding: 10px 12px;
+      border: 1px solid #d0c8e8;
+      border-radius: 10px;
+      font-size: 1rem;
+      min-width: 160px;
+      background: #fff;
+    }
+    input[type="date"]:focus {
+      outline: 2px solid rgba(98, 40, 192, 0.35);
+      border-color: var(--purple);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    button.primary {
+      background: linear-gradient(135deg, var(--purple), #7c4dff);
+      color: #fff;
+    }
+    button.primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    button.secondary {
+      background: #ede7f6;
+      color: var(--purple);
+    }
+    button.send {
+      background: linear-gradient(135deg, #00838f, var(--mint));
+      color: #fff;
+    }
+    button.send:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 12px;
+      padding: 12px;
+      background: #faf8ff;
+      border-radius: 10px;
+      border-left: 4px solid var(--mint);
+    }
+    .err {
+      color: var(--danger);
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      margin-top: 12px;
+      padding: 12px;
+      background: #ffebee;
+      border-radius: 10px;
+      display: none;
+    }
+    .err.show { display: block; }
+    .okmsg {
+      color: var(--ok);
+      font-size: 0.9rem;
+      margin-top: 12px;
+      display: none;
+    }
+    .okmsg.show { display: block; }
+    .preview-wrap {
+      margin-top: 8px;
+      border: 1px solid #e0d8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      min-height: 400px;
+    }
+    .preview-wrap iframe {
+      width: 100%;
+      min-height: 720px;
+      border: 0;
+      display: block;
+    }
+    .preview-placeholder {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .spinner {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--purple);
+      font-weight: 600;
+    }
+    .spinner.show { display: inline-flex; }
+    .spinner::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border: 2px solid #e4daf5;
+      border-top-color: var(--purple);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav"><a href="/">← 프롬프트 제어 패널</a></div>
+    <h1>주간 보고서 만들기</h1>
+    <p class="sub">
+      기간을 선택한 뒤 <strong>주간보고 만들기</strong>로 미리보기를 생성하고, 확인 후 <strong>발송하기</strong>로 메일을 보냅니다.
+      (서버는 Amplitude <strong>Dashboard REST</strong>로 조회합니다. REST 키가 없으면 <code>amplitude_snapshot.json</code>의 <code>weekly_interval_7</code>에 선택한 주의 <strong>월요일</strong> 키와 UV/PV가 있어야 합니다. <code>report_week</code> 메타만 다르면 됩니다.)
+    </p>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label for="start">시작일</label>
+          <input type="date" id="start" />
+        </div>
+        <div class="field">
+          <label for="end">종료일</label>
+          <input type="date" id="end" />
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="primary" id="btnBuild">주간보고 만들기</button>
+        <span class="spinner" id="spinner">생성 중… (수 분 걸릴 수 있습니다)</span>
+        <button type="button" class="send" id="btnSend" disabled>발송하기</button>
+      </div>
+      <div class="hint">
+        · 종료일은 시작일 이상이어야 합니다.<br />
+        · 미리보기는 현재 저장된 프롬프트·<code>weekly-report-email.html</code> 기준으로 만들어집니다.<br />
+        · 발송은 미리보기와 <strong>같은 시작·종료일</strong>일 때만 가능합니다.
+      </div>
+      <div class="err" id="errBox"></div>
+      <div class="okmsg" id="okBox"></div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 12px;font-size:1.05rem;color:var(--purple);">미리보기</h2>
+      <div class="preview-wrap" id="previewOuter">
+        <div class="preview-placeholder" id="ph">기간을 선택하고 「주간보고 만들기」를 눌러 주세요.</div>
+        <iframe id="previewFrame" title="메일 미리보기" style="display:none;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function defaultReportRange() {
+      const now = new Date();
+      const day = now.getDay();
+      const currentMonday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      currentMonday.setDate(now.getDate() - (day === 0 ? 6 : day - 1));
+      currentMonday.setHours(0, 0, 0, 0);
+      const reportStart = new Date(currentMonday);
+      reportStart.setDate(currentMonday.getDate() - 7);
+      const reportEnd = new Date(currentMonday);
+      reportEnd.setDate(currentMonday.getDate() - 1);
+      const iso = (d) => d.toISOString().slice(0, 10);
+      return { start: iso(reportStart), end: iso(reportEnd) };
+    }
+
+    const startEl = document.getElementById("start");
+    const endEl = document.getElementById("end");
+    const btnBuild = document.getElementById("btnBuild");
+    const btnSend = document.getElementById("btnSend");
+    const errBox = document.getElementById("errBox");
+    const okBox = document.getElementById("okBox");
+    const spinner = document.getElementById("spinner");
+    const ph = document.getElementById("ph");
+    const iframe = document.getElementById("previewFrame");
+
+    const r = defaultReportRange();
+    startEl.value = r.start;
+    endEl.value = r.end;
+
+    function hideErr() {
+      errBox.classList.remove("show");
+      errBox.textContent = "";
+    }
+    function showErr(msg) {
+      errBox.textContent = msg;
+      errBox.classList.add("show");
+      okBox.classList.remove("show");
+    }
+    function showOk(msg) {
+      okBox.textContent = msg;
+      okBox.classList.add("show");
+    }
+
+    btnBuild.addEventListener("click", async () => {
+      hideErr();
+      const start = startEl.value;
+      const end = endEl.value;
+      if (!start || !end) {
+        showErr("시작일과 종료일을 모두 선택하세요.");
+        return;
+      }
+      if (end < start) {
+        showErr("종료일은 시작일 이상이어야 합니다.");
+        return;
+      }
+      btnBuild.disabled = true;
+      btnSend.disabled = true;
+      spinner.classList.add("show");
+      ph.style.display = "block";
+      iframe.style.display = "none";
+      try {
+        const res = await fetch("/api/report/preview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ start, end }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) {
+          showErr(data.error || "미리보기 생성에 실패했습니다.");
+          return;
+        }
+        ph.style.display = "none";
+        iframe.style.display = "block";
+        iframe.src = "/api/report/preview-html?t=" + Date.now();
+        btnSend.disabled = false;
+        showOk("미리보기가 준비되었습니다. 내용을 확인한 뒤 발송하세요.");
+      } catch (e) {
+        showErr(String(e));
+      } finally {
+        btnBuild.disabled = false;
+        spinner.classList.remove("show");
+      }
+    });
+
+    btnSend.addEventListener("click", async () => {
+      hideErr();
+      if (!confirm("지금 보이는 미리보기와 동일 기간으로 메일을 발송할까요?")) return;
+      const start = startEl.value;
+      const end = endEl.value;
+      btnSend.disabled = true;
+      spinner.classList.add("show");
+      try {
+        const res = await fetch("/api/report/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ start, end }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) {
+          showErr(data.error || "발송에 실패했습니다.");
+          btnSend.disabled = false;
+          return;
+        }
+        showOk("발송 완료: " + (data.receivers || []).join(", ") + " (제목: " + (data.subject || "") + ")");
+      } catch (e) {
+        showErr(String(e));
+        btnSend.disabled = false;
+      } finally {
+        spinner.classList.remove("show");
+      }
+    });
+  </script>
+</body>
+</html>

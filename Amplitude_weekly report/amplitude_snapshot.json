@@ -1,0 +1,82 @@
+{
+  "report_week": {
+    "label": "금주 (리포트 기준)",
+    "range_kst": "2026-03-02 - 2026-03-08",
+    "unix": { "start": 1772377200, "end": 1772981999 }
+  },
+  "prior_week": {
+    "label": "전주",
+    "range_kst": "2026-02-23 - 2026-03-01",
+    "unix": { "start": 1771772400, "end": 1772377199 }
+  },
+  "project_id": "343341",
+  "dashboard_url": "https://app.amplitude.com/analytics/Hanatour/dashboard/ntke3pe0/edit/murqe9ar",
+  "load_pages_ai_image": {
+    "definition": "load_pages · locationPathname contains \"/ai-image\"",
+    "weekly_interval_7": {
+      "2026-02-23": { "uniques": 1733, "totals_pv": 2888 },
+      "2026-03-02": { "uniques": 1652, "totals_pv": 2886 }
+    }
+  },
+  "funnel_3step_hai_to_pkg": {
+    "chart_saved": "b2acszi4",
+    "name": "전환율 H-AI -> AI 피규어 이미지 -> 패키지상품상세",
+    "steps": [
+      "load_pages · pathname is /dcr/chatai",
+      "load_pages · pathname contains /ai-image",
+      "load_detail_pkg"
+    ],
+    "conversion_seconds": 86400,
+    "mode": "ordered",
+    "totals_from_query_dataset": {
+      "prior_week": {
+        "conversion": 0.000890683451101479,
+        "step1_users": 16841,
+        "step2_users": 80,
+        "step3_users": 15
+      },
+      "report_week": {
+        "conversion": 0.00125952515901505,
+        "step1_users": 15879,
+        "step2_users": 75,
+        "step3_users": 20
+      }
+    },
+    "derived_pct": {
+      "hai_to_ai_image": { "prior": 0.00475, "report": 0.00472 },
+      "overall_conversion_pct": { "prior": 0.089, "report": 0.126 }
+    }
+  },
+  "funnel_2step_ai_image_to_pkg": {
+    "definition": "load_pages · /ai-image → load_detail_pkg (순서 퍼널, 24h)",
+    "totals_from_query_dataset": {
+      "prior_week": { "conversion": 0.130409694171956, "step1": 1733, "step2": 226 },
+      "report_week": { "conversion": 0.13135593220339, "step1": 1652, "step2": 217 }
+    },
+    "derived_pct": { "prior": 13.04, "report": 13.14 }
+  },
+  "platform_resPathCd": {
+    "chart_saved": "51rah2bn",
+    "chart_name": "AI 피규어 이미지 - 플랫폼별",
+    "project_name": "Hanatour_pc_mo",
+    "chart_url": "https://app.amplitude.com/analytics/Hanatour/chart/51rah2bn",
+    "ui_note": "대시보드는 기본 '지난 7일' 롤링일 수 있음. 리포트 비율은 report_week 캘린더 주간 합계.",
+    "metric": "totals · load_pages /ai-image · group resPathCd",
+    "report_week_column_2026_03_02": { "MDA": 2838, "DCM": 31, "DCP": 17, "total": 2886 },
+    "pct": { "MDA": 98.34, "DCM": 1.07, "DCP": 0.59 }
+  },
+  "chart_regional_ai_image": {
+    "chart_saved": "khjdukis",
+    "event": "exhibition_img · group cityNm",
+    "mcp_note": "query_dataset에서 cityNm이 (none)만 반환되어 API Top3 산출 불가. 대시보드 AI 이미지_지역별 · 2026-03-23~29 UI와 동일한 Top3를 사용.",
+    "top3_ui_verified_2026_03_23_to_29": [
+      { "rank": 1, "label": "아랍에미리트 두바이", "value": 8 },
+      { "rank": 2, "label": "일본 도쿄", "value": 8 },
+      { "rank": 3, "label": "미국 하와이", "value": 6 }
+    ]
+  },
+  "source": "Amplitude MCP query_dataset (2026-04-02 재조회). UV/PV·퍼널·플랫폼은 동일 unix 구간. 지역 Top3는 대시보드 UI 검증값.",
+  "next_steps": [
+    "exhibition_img cityNm이 (none)인 원인(태깅/샌드박스) 점검 시 MCP와 UI 일치 가능"
+  ]
+}
